@@ -23,6 +23,7 @@ public class QueryNhs {
 
     @RequestMapping("/search")
     public NhsResponse search(@RequestParam("query") String query) {
+        //we would probably want to sanitize the query as it comes from user....
         Set<NhsPageInfo> nhsPageDetaiInfos = queryService.searchFor(query);
         List<String> results = new ArrayList<>(nhsPageDetaiInfos.size());
         for (NhsPageInfo nhsPageDeInfoInfo : nhsPageDetaiInfos) {

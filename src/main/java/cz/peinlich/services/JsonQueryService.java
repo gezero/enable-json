@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,10 +27,12 @@ public class JsonQueryService {
     @Autowired
     private ResourceLoader resourceLoader;
 
+    Set<String> ignoredWords = new HashSet<>(Arrays.asList("What", "are", "the", "of", "for"));
+
 
     Set<NhsPageInfo> details = new HashSet<>();
 
-    @PostConstruct
+    @PostConstructx
     public void loadJson() throws IOException {
         ObjectMapper jsonMapper = new ObjectMapper();
         Resource resource = resourceLoader.getResource("classpath:" + jsonLocation);
@@ -51,7 +54,26 @@ public class JsonQueryService {
         return result;
     }
 
+
+    /**
+     *  This is search is very simple we just check that each word from query is somewhere in the content.
+     *  We skip the ignored words
+     */
     private boolean acceptable(NhsPageInfo detail, String query) {
-        return true;
+        if (query == null){
+            return false;
+        }
+        String[] split = query.split("\\s+");
+        boolean queried =false;
+        for (String s : split) {
+            if (ignoredWords.contains(s)){
+                continue;
+            }
+            queried = true;
+            if (!detail.getContent().contains(s)){
+                return false;
+            }
+        }
+        return queried;
     }
 }
