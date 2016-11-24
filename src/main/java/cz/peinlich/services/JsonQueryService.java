@@ -32,7 +32,7 @@ public class JsonQueryService {
 
     Set<NhsPageInfo> details = new HashSet<>();
 
-    @PostConstructx
+    @PostConstruct
     public void loadJson() throws IOException {
         ObjectMapper jsonMapper = new ObjectMapper();
         Resource resource = resourceLoader.getResource("classpath:" + jsonLocation);
@@ -61,6 +61,9 @@ public class JsonQueryService {
      */
     private boolean acceptable(NhsPageInfo detail, String query) {
         if (query == null){
+            return false;
+        }
+        if (detail.getContent() == null){
             return false;
         }
         String[] split = query.split("\\s+");

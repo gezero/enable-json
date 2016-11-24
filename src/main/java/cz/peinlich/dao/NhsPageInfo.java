@@ -4,12 +4,21 @@ package cz.peinlich.dao;
  * @author Jiri
  */
 public class NhsPageInfo {
+    String host;
     String section_name;
     String section_url;
     String article_name;
     String article_url;
     String content;
 
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
 
     public String getSection_name() {
         return section_name;

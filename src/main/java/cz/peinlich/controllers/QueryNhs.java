@@ -27,7 +27,7 @@ public class QueryNhs {
         Set<NhsPageInfo> nhsPageDetaiInfos = queryService.searchFor(query);
         List<String> results = new ArrayList<>(nhsPageDetaiInfos.size());
         for (NhsPageInfo nhsPageDeInfoInfo : nhsPageDetaiInfos) {
-            results.add(nhsPageDeInfoInfo.getArticle_url());
+            results.add(nhsPageDeInfoInfo.getHost() + nhsPageDeInfoInfo.getArticle_url());
         }
         return new NhsResponse(query, results);
     }
