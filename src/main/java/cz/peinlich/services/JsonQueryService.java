@@ -59,7 +59,7 @@ public class JsonQueryService {
      *  This is search is very simple we just check that each word from query is somewhere in the content.
      *  We skip the ignored words
      */
-    private boolean acceptable(NhsPageInfo detail, String query) {
+    boolean acceptable(NhsPageInfo detail, String query) {
         if (query == null){
             return false;
         }
