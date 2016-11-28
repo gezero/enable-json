@@ -11,6 +11,17 @@ public class NhsPageInfo {
     String article_url;
     String content;
 
+    public NhsPageInfo() {
+    }
+
+    public NhsPageInfo(String host, String section_name, String section_url, String article_name, String article_url, String content) {
+        this.host = host;
+        this.section_name = section_name;
+        this.section_url = section_url;
+        this.article_name = article_name;
+        this.article_url = article_url;
+        this.content = content;
+    }
 
     public String getHost() {
         return host;
